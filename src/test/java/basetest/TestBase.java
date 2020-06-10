@@ -72,7 +72,7 @@ public class TestBase {
             TakesScreenshot image = (TakesScreenshot) driver;
             File screenshot = image.getScreenshotAs(OutputType.FILE);
             try {
-                Files.move(screenshot,new File("resources/screenshots/" + result.getName() + ".png"));
+                Files.move(screenshot,new File("src/test/resources/Screenshots" + result.getName() + ".png"));
             }catch (Exception e){
                 e.printStackTrace();
             }
