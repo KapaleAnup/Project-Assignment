@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class ValidDataHomePage {
+public class ValidDataHomePage extends BasePage {
 
 
     private WebDriver driver;
@@ -16,8 +16,7 @@ public class ValidDataHomePage {
 
 
     public ValidDataHomePage(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 
     //profile selection properties:
