@@ -1,6 +1,7 @@
 package testcases;
 
 import basetest.TestBase;
+import constants.Constants;
 import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -8,6 +9,7 @@ import io.qameta.allure.Story;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.RegistrationPage;
 import pages.ValidDataHomePage;
@@ -43,9 +45,14 @@ public class ValidateDataHomePageTests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     @Description("Verify Date of Birth section")
     @Story("To verify the user is able provide date of birth")
-    @Test(priority = 2)
-    public void testDateOfBirth(){
-        validDataHomePage.setDateOfBirth("08121992");
+    @Test(priority = 2, dataProvider = "dateofbirth")
+    public void testDateOfBirth(String dateofbirth){
+        validDataHomePage.clickOnLetsBeginButton();
+        String errormessage = validDataHomePage.getErrorMessage();
+        Assert.assertEquals(errormessage, Constants.EMPTY_DATE_OF_BIRTH,"doesn't match");
+
+        validDataHomePage.setDateOfBirth(dateofbirth);
+        validDataHomePage.clickOnLetsBeginButton();
     }
 
     @Severity(SeverityLevel.TRIVIAL)
@@ -73,6 +80,23 @@ public class ValidateDataHomePageTests extends TestBase {
     public void testcompleteProfileSelection(){
 
         registerPage = validDataHomePage.clickOnLetsBeginButton();
+    }
+
+    @Severity(SeverityLevel.BLOCKER)
+    @Description("Verify Registration Page")
+    @Story("To verify the user is able to redirect to the Registration Page.")
+    @Test(priority = 6)
+    public void testRegistrationPage(){
+        String pageTitle =  driver.getCurrentUrl();
+        System.out.println(pageTitle);
+        String headerTitle = registerPage.getheaderTitle();
+        Assert.assertEquals(headerTitle, Constants.HEADER_TITLE,"Header Title doesn't match");
+    }
+
+    @DataProvider(name = "dateofbirth")
+    public Object[][] getDateOfbirthData(){
+        Object[][] data = {{"01021991"}};
+        return data;
     }
 
 }

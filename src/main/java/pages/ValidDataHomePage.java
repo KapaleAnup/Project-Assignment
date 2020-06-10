@@ -57,6 +57,10 @@ public class ValidDataHomePage {
     @FindBy(xpath ="//div[contains(text(),'Lets Begin')]" )
     private WebElement letsBeginbutton;
 
+    //Error message xpath
+    @FindBy(xpath = "//div[contains(@class,'push-half-h--top')]")
+    private WebElement dateOfBirthErrorMessage;
+
     /**
      * This method is used for profile selection in the provided drop down.
      * @param option
@@ -110,6 +114,10 @@ public class ValidDataHomePage {
      */
     public void setDateOfBirth(String dateofbirth){
         dateOfBirth.sendKeys(dateofbirth);
+    }
+
+    public String getErrorMessage(){
+        return dateOfBirthErrorMessage.getText();
     }
 
 

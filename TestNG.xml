@@ -6,7 +6,9 @@
     <parameter name="appURL" value="https://www.sangam.com" />
     <test name="Assignment">
         <classes>
-
+            <class name="testcases.HomePageTests"/>
+            <class name="testcases.ValidateDataHomePageTests"/>
+            <class name="testcases.RegistrationPageTests"/>
         </classes>
     </test>
 </suite>
