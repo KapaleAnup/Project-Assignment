@@ -2,11 +2,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Test Suite" verbose="10">
 
+    <listeners>
+        <listener class-name="listener.TestListner"/>
+    </listeners>
     <parameter name="browserType" value="chrome" />
     <parameter name="appURL" value="https://www.sangam.com" />
     <test name="Assignment">
         <classes>
-
+            <class name="testcases.HomePageTests"/>
+            <class name="testcases.ValidateDataHomePageTests"/>
         </classes>
     </test>
 </suite>
