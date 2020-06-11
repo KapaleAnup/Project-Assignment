@@ -115,11 +115,19 @@ public class ValidDataHomePage extends BasePage {
         dateOfBirth.sendKeys(dateofbirth);
     }
 
+    /**
+     * It will provide text in return
+     * @return
+     */
     public String getErrorMessage(){
         return dateOfBirthErrorMessage.getText();
     }
 
-
+    /**
+     * This method will check if the button is active and click.
+     * It will return RegistrationPage as next page to redirect and fetch the properties of that page.
+     * @return
+     */
     public RegistrationPage clickOnLetsBeginButton(){
 
         WebElement letsbeginbtn = letsBeginbutton;

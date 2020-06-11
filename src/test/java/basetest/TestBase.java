@@ -37,15 +37,28 @@ public class TestBase {
         }
     }
 
+    /**
+     * This method will return chromedriver with url.
+     * @param appURL
+     * @return
+     *
+     * Used WebDriverManager class to fetch the driver properties directly instead of assigning in path
+     */
     private static WebDriver initChromeDriver(String appURL) {
-        System.out.println("Launching google chrome with new profile..");
+        System.out.println("Launching google chrome..");
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.navigate().to(appURL);
         return driver;
     }
-
+    /**
+     * This method will return firefoxdriver with url.
+     * @param appURL
+     * @return
+     *
+     * Used WebDriverManager class to fetch the driver properties directly instead of assigning in path
+     */
     private static WebDriver initFirefoxDriver(String appURL) {
         System.out.println("Launching Firefox browser..");
         WebDriverManager.firefoxdriver().setup();
@@ -54,6 +67,13 @@ public class TestBase {
         return driver;
     }
 
+    /**
+     * This method will invoke the browser and url
+     * @param browserType
+     * @param appURL
+     *
+     * Eg: browserType=chrome , appURL = url of the application.
+     */
     @Parameters({ "browserType", "appURL" })
     @BeforeClass
     public void initializeTestBaseSetup(String browserType, String appURL) {
@@ -65,7 +85,10 @@ public class TestBase {
         }
     }
 
-
+    /**
+     * This is screeshot capture utility which will called when the testcase will get failed.
+     * @param result
+     */
     @BeforeMethod
     public void failedTestCasesScreenshots(ITestResult result){
         if(ITestResult.FAILURE == result.getStatus()){
@@ -79,9 +102,15 @@ public class TestBase {
         }
     }
 
+    /**
+     * This method will help to close or quite the open browsers.
+     */
     @AfterClass
     public void tearDown() {
-        driver.quit();
+        if(null != driver) {
+            driver.close();
+            driver.quit();
+        }
     }
 
 }

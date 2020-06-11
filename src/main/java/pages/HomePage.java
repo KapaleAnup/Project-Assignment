@@ -21,10 +21,18 @@ public class HomePage extends BasePage{
     private WebElement communityErrorMessage;
 
 
+    /**
+     * This constructor will call the super(parent properties) by extending the BasePage class.
+     * @param driver
+     */
     public HomePage(WebDriver driver){
        super(driver);
     }
 
+    /**
+     * This method will help to get error message of profile section
+     * @return
+     */
     public String getCreateProfileErrorMessage(){
 
         String errorMessageProfile = createProfileErrorMessage.getText();
@@ -32,7 +40,10 @@ public class HomePage extends BasePage{
         return errorMessageProfile;
     }
 
-
+    /**
+     * This method will help to get error message of Community section
+     * @return
+     */
     public String getCommunityErrorMessage(){
 
         String errorMessage = communityErrorMessage.getText();
@@ -40,6 +51,10 @@ public class HomePage extends BasePage{
         return errorMessage;
     }
 
+    /**
+     * This method will check if the button is active and click.
+     *
+     */
     public void clickOnLetsBeginButton(){
 
         WebElement letsbeginbtn = letsBeginbutton;
