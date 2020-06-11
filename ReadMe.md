@@ -22,6 +22,7 @@ Project Structure :
 2.It will initiate the WebDriver interface with chrome or firefox Driver class.
 
 #TestCases:
+
 1.TestCases will extend the TestBase class and initialize the driver.
 2.Verify positive and negative scenarios.
 

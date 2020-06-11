@@ -14,6 +14,9 @@ public class ValidDataHomePage extends BasePage {
     private WebDriver driver;
     private WebDriverWait wait;
 
+    public String language;
+    public String community;
+
 
     public ValidDataHomePage(WebDriver driver){
         super(driver);
@@ -28,15 +31,15 @@ public class ValidDataHomePage extends BasePage {
 
 
     //Mother tongue selection properties:
-
     @FindBy(xpath = "//div[@class='Mt(20px)--s Mt(20px)--D']//div//div[@class='Pos(r) soft-half-h--ends Cur(p) txt-g-primary']")
     private WebElement motherTongueSelection;
 
     @FindBy(xpath = "//input[@placeholder='Search Mother Tongue']")
     private WebElement motherTongueSearch;
 
-    @FindBy(xpath = "//div[contains(text(),'English')]")
-    private WebElement motherTongueSearchedResult;
+    @FindBy(xpath = "//div[@class='Mt(58px)']//div")
+    private  List<WebElement>  motherTongueSearchedResult;
+
 
     //Community selection properties:
     @FindBy(xpath = "//div[@class='push--top']//div//div[@class='Pos(r) soft-half-h--ends Cur(p) txt-g-primary']")
@@ -45,8 +48,8 @@ public class ValidDataHomePage extends BasePage {
     @FindBy(xpath = "//input[@type='custom-input']")
     private WebElement communitySearch;
 
-    @FindBy(xpath = "//div[contains(text(),'Hindu - Kunbi')]")
-    private WebElement communitySearchResult;
+    @FindBy(xpath = "//div[@class='Mt(58px)']//div")
+    private List<WebElement> communitySearchResult;
 
     // Date of Birth selection:
     @FindBy(xpath = "//input[@class='mskd-inpt  ']")
@@ -89,9 +92,24 @@ public class ValidDataHomePage extends BasePage {
     public void setMotherTongueSelection(String mothertongue){
         motherTongueSelection.click();
         motherTongueSearch.sendKeys(mothertongue);
-        motherTongueSearchedResult.click();
+        searchResultMotherTounge();
     }
 
+    /**
+     * This method is used to iterate the searched language
+     */
+    private void searchResultMotherTounge(){
+        List<WebElement> listoflanguages = motherTongueSearchedResult;
+
+        System.out.println(listoflanguages.size());
+
+        for(int i=0;i<listoflanguages.size();i++){
+            language = listoflanguages.get(i).getText();
+            System.out.println(language);
+            listoflanguages.get(i).click();
+
+        }
+    }
     /**
      * This method is used to select and search the community section.
      * @param community
@@ -102,7 +120,20 @@ public class ValidDataHomePage extends BasePage {
     public void setCommunitySelection(String community){
         communityProfileSelection.click();
         communitySearch.sendKeys(community);
-        communitySearchResult.click();
+        searchResultCommunity();
+    }
+
+    private void searchResultCommunity(){
+        List<WebElement> listOfCommunity = communitySearchResult;
+
+        System.out.println(listOfCommunity.size());
+
+        for(int i=0;i<listOfCommunity.size();i++){
+            community = listOfCommunity.get(i).getText();
+            System.out.println(community);
+            listOfCommunity.get(i).click();
+
+        }
     }
 
     /**

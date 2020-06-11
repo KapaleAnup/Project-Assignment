@@ -19,6 +19,7 @@ public class TestBase {
 
     private static WebDriver driver;
 
+
     public WebDriver getDriver() {
         return driver;
     }
@@ -49,7 +50,7 @@ public class TestBase {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.navigate().to(appURL);
+        driver.get(appURL);
         return driver;
     }
     /**
@@ -63,7 +64,7 @@ public class TestBase {
         System.out.println("Launching Firefox browser..");
         WebDriverManager.firefoxdriver().setup();
         driver = new FirefoxDriver();
-        driver.navigate().to(appURL);
+        driver.get(appURL);
         return driver;
     }
 
