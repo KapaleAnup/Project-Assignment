@@ -1,3 +1,12 @@
+
+To Run the Project below steps are required:
+
+1. After cloning the project, go to the project path.
+2. Run Command "mvn clean test".
+3. After successful execution of test cases run "allure serve" command to see the Test Case execution Reports.
+
+
+
 Project Structure :
 
 # Created constant class:
