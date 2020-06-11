@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class ValidDataHomePage extends BasePage {
+public class ValidDataHomePage {
 
 
     private WebDriver driver;
@@ -19,7 +19,8 @@ public class ValidDataHomePage extends BasePage {
 
 
     public ValidDataHomePage(WebDriver driver){
-        super(driver);
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     //profile selection properties:
@@ -109,7 +110,9 @@ public class ValidDataHomePage extends BasePage {
             listoflanguages.get(i).click();
 
         }
+
     }
+
     /**
      * This method is used to select and search the community section.
      * @param community

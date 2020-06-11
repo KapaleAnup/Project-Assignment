@@ -12,9 +12,8 @@ Project Structure :
 
 # Pages:
 
-1.Created BasePage As a parent page so that all the properties of Base Page can be called to it's child classes(Inheritance)
-2.Uses Page factory pattern (POM) to creates Object Repository for web UI elements.
-3.It helps make the code more readable, maintainable, and reusable.
+1.Uses Page factory pattern (POM) to creates Object Repository for web UI elements.
+2.It helps make the code more readable, maintainable, and reusable.
 
 # TestBase:
 
@@ -30,7 +29,14 @@ Project Structure :
 #TestNG :
 
 1.Used TestNG Testing Framework to priorities and Assert the test cases.
-1.Used TestNG anotations to Execute test cases
+2.Used TestNG anotations to Execute test cases
+3.Used @Dataprovider for Data-Driven testing.
+
+#JsonProperties:
+
+1.Used json file to fetch the data from json.
+2.Used JSONTokener to extract the the strings.
+3.Used JSONobjet is used to fetch values in key value pair.
 
 #pom.xml :
 

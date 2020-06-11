@@ -6,6 +6,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -13,6 +15,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.RegistrationPage;
 import pages.ValidDataHomePage;
+
+import java.io.InputStream;
 
 public class ValidateDataHomePageTests extends TestBase {
 
@@ -22,6 +26,10 @@ public class ValidateDataHomePageTests extends TestBase {
 
     ValidDataHomePage validDataHomePage ;
     RegistrationPage registerPage;
+
+    InputStream inputStream;
+    JSONTokener tokener;
+    JSONObject jsonData;
 
 
     @BeforeClass
@@ -59,8 +67,20 @@ public class ValidateDataHomePageTests extends TestBase {
     @Description("Verify Mother Tongue section")
     @Story("To verify the user is able select Mother tongue by provided valid data.")
     @Test(priority = 3)
-    public void testMotherTongueSelection(){
-        validDataHomePage.setMotherTongueSelection("English");
+    public void testMotherTongueSelection() throws Exception{
+        try{
+            String jsonPathlanguage = "Data/languageData.json";
+            inputStream = getClass().getClassLoader().getResourceAsStream(jsonPathlanguage);
+            tokener = new JSONTokener(inputStream);
+            jsonData = new JSONObject(tokener);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(inputStream != null){
+                inputStream.close();
+            }
+        }
+        validDataHomePage.setMotherTongueSelection(jsonData.getJSONObject("validLanguage").getString("language"));
 
         Assert.assertTrue(true, "Searched data doesn't match");
     }
@@ -69,8 +89,20 @@ public class ValidateDataHomePageTests extends TestBase {
     @Description("Verify Community section")
     @Story("To verify the user is able to select the community by providing valid data")
     @Test(priority = 4)
-    public void testCommunitySelection(){
-        validDataHomePage.setCommunitySelection("Hindu - kunbi");
+    public void testCommunitySelection() throws Exception{
+        try{
+            String jsonPathCommunity = "Data/CommunityData.json";
+            inputStream = getClass().getClassLoader().getResourceAsStream(jsonPathCommunity);
+            JSONTokener tokener = new JSONTokener(inputStream);
+            jsonData = new JSONObject(tokener);
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            if(inputStream != null){
+                inputStream.close();
+            }
+        }
+        validDataHomePage.setCommunitySelection(jsonData.getJSONObject("validCommunity").getString("community"));
         Assert.assertTrue(true, "Searched data doesn't match");
     }
     @Severity(SeverityLevel.CRITICAL)
@@ -87,7 +119,7 @@ public class ValidateDataHomePageTests extends TestBase {
     @Story("To verify the user is able to redirect to the Registration Page.")
     @Test(priority = 6)
     public void testRegistrationPage(){
-        String pageTitle =  driver.getCurrentUrl();
+        String pageTitle = driver.getCurrentUrl();
         System.out.println(pageTitle);
         String headerTitle = registerPage.getheaderTitle();
         Assert.assertEquals(headerTitle, Constants.HEADER_TITLE,"Header Title doesn't match");
