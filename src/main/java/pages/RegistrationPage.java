@@ -13,6 +13,10 @@ public class RegistrationPage {
     private WebElement headerTitle;
 
 
+    /**
+     * This constructor will Initiate with PageFactory class
+     * @param driver
+     */
     public RegistrationPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);

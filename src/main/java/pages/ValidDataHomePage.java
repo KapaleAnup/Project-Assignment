@@ -17,7 +17,10 @@ public class ValidDataHomePage {
     public String language;
     public String community;
 
-
+    /**
+     * This constructor will Initiate with PageFactory class
+     * @param driver
+     */
     public ValidDataHomePage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
