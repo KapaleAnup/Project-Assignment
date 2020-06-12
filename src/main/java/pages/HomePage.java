@@ -22,7 +22,7 @@ public class HomePage {
 
 
     /**
-     * This constructor will call the super(parent properties) by extending the BasePage class.
+     * This constructor will Initiate with PageFactory class
      * @param driver
      */
     public HomePage(WebDriver driver){
